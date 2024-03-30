@@ -1,0 +1,50 @@
+
+No Vuex, "getters" são funções que permitem acessar e computar valores derivados do estado armazenado no store Vuex. 
+Eles são semelhantes a "computed properties" em componentes Vue,
+mas são usados para computações que envolvem o estado global do aplicativo.
+
+Os getters são úteis quando você precisa derivar ou calcular valores com base no estado armazenado no Vuex, 
+mas não deseja modificar esse estado diretamente. Em vez disso, você pode usar um getter para calcular um valor com base no estado existente.
+
+Aqui está um exemplo simples para ilustrar como os getters funcionam:
+
+// Definição do estado no store Vuex
+const store = new Vuex.Store({
+  state: {
+    produtos: [
+      { id: 1, nome: 'Produto A', preco: 10 },
+      { id: 2, nome: 'Produto B', preco: 20 },
+      { id: 3, nome: 'Produto C', preco: 30 }
+    ]
+  },
+  getters: {
+    // Getter para obter o total de todos os preços dos produtos
+    totalPrecoProdutos: state => {
+      return state.produtos.reduce((total, produto) => total + produto.preco, 0);
+    }
+  }
+});
+
+Neste exemplo, definimos um getter chamado totalPrecoProdutos 
+que calcula o preço total de todos os produtos no estado Vuex. 
+Este getter acessa o array de produtos do estado Vuex usando state.produtos e 
+usa o método reduce() para calcular o total dos preços dos produtos.
+
+Os getters são acessados em componentes Vue da mesma maneira que o estado é acessado, 
+usando a propriedade $store. Por exemplo:
+
+// Exemplo de utilização do getter em um componente Vue
+Vue.component('ExemploComponente', {
+  computed: {
+    // Utilizando o getter totalPrecoProdutos no componente
+    totalPrecoProdutos() {
+      return this.$store.getters.totalPrecoProdutos;
+    }
+  },
+  template: `<div>Total Preço Produtos: {{ totalPrecoProdutos }}</div>`
+});
+
+Neste componente Vue, acessamos o getter totalPrecoProdutos usando this.$store.getters.totalPrecoProdutos.
+
+Em resumo, getters no Vuex são funções que permitem acessar e calcular valores derivados do estado armazenado no store Vuex. 
+Eles são úteis para computações que envolvem o estado global do aplicativo e são acessados em componentes Vue usando this.$store.getters.
