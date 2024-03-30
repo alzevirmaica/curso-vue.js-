@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    Teste live server
+    <div id="app">
+        <!-- {{ mensagem }} <br>
+        valor total: {{ valorTotal }} <br>
+        Logado: {{ logado }} <br>
+        Hobbie: {{ hobbies[0] }} <br>
+        Perfil: {{ perfil.site }}, {{ perfil.cursos[0].nome }} -->
+        <!-- {{ somar() }} <br>
+        {{ subtrair() }} <br>
+        {{ multiplicar() }} <br>
+        {{ dividir() }} -->
+       <a>Site</a>
+       <p>Entendendo a diretiva v-bind</p>
+       <input type="text">
+       <input type="checkbox">
+    </div>
+
+
+    <script>
+        //precisa da instância de Vue para manipular o HTML
+        const vm = new Vue({
+            el: '#app', //#para selecinoar o Id
+            data: {
+                mensagem: 'Primeiro template controlado pelo Vue',
+                valorTotal: 150.47, //número
+                logado: false, //booleano
+                hobbies: [
+                    'Dormir',
+                    'colecionar video games antigos',
+                    'correr',
+                    'trilhas'
+                ],
+                perfil: {
+                    nome: 'Jorge Sant Ana',
+                    site: 'jorgesantana.net,br',
+                    idade: 32,
+                    cursos: [
+                        {
+                            nome: 'Laravel', 
+                            cargaHoraria: '50 horas'
+                        },
+                        {
+                            nome: 'banco de dados relacionais', 
+                            cargaHoraria: '40 horas'
+                        }
+                    ],
+                },
+                n1: Number(10),
+                n2: Number(5)
+            },
+            methods: {
+                somar() {
+                    return this.n1 + this.n2; //recuperando atributos do data usando 'this'
+                },
+                subtrair() {
+                    return 4 - 2
+                },
+                multiplicar() {
+                    return 4 * 2
+                },
+                dividir() {
+                  return 4 / 2
+                },
+            },
+        })
+
+    </script>
+</body>
+
+</html>

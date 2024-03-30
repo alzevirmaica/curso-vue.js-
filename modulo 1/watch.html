@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span>Paciente: </span><input type="text" v-model="paciente">
+        <br>
+        <ul>
+            <li v-for="p in lista">{{p.nome}}, {{p.idade}}</li>
+        </ul>
+    </div>
+
+
+    <script>
+        //precisa da instância de Vue para manipular o HTML
+        const vm = new Vue({
+            el: '#app', //#para selecinoar o Id
+            data: {
+               paciente: '',
+               pacientes: [
+                {nome: 'Jorge Santaana', idade: 32},
+                {nome: 'João Santos', idade: 45},
+                {nome: 'José Augusto', idade:18},
+                {nome: 'Junior Silva', idade: 20},
+                {nome: 'Julio Nogueira', idade: 50}
+               ],
+               lista: []
+            },
+            computed: {
+              
+            },
+            watch: {
+                //Observa as mudanças d estado no atributo paciente, por isso o mesmo nome do atributo.
+                paciente(valorNovo) {
+                    this.lista = this.pacientes.filter(p => p.nome.match(valorNovo))
+                }
+            },
+            methods: {
+             
+            },
+        })
+    </script>
+</body>
+
+</html>

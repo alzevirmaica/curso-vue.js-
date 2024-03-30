@@ -1,0 +1,20 @@
+No Vue.js, Vuex é uma biblioteca de gerenciamento de estado que é inspirada na arquitetura Flux, 
+que é comum em aplicativos web de grande escala. O estado é uma parte fundamental dessa arquitetura.
+
+O "estado" em Vuex refere-se ao estado centralizado de toda a sua aplicação Vue.js. 
+É um objeto JavaScript que contém dados que você deseja compartilhar entre componentes Vue. 
+Este estado é armazenado em um "store" Vuex centralizado e pode ser acessado de qualquer componente na sua aplicação Vue.js.
+
+O Vuex ajuda a resolver problemas de comunicação entre componentes que estão distantes na hierarquia de componentes. 
+Em vez de passar dados entre componentes pai e filho ou emitir eventos por toda a aplicação para comunicar mudanças de estado, 
+você pode simplesmente acessar e modificar o estado diretamente de qualquer componente.
+
+O estado no Vuex é mutável, o que significa que você pode modificar seus valores diretamente. 
+No entanto, o Vuex oferece um conjunto de padrões e métodos para modificar o estado de forma previsível e rastreável, 
+garantindo que as mutações no estado sejam feitas de maneira segura e rastreável. 
+Isso inclui a utilização de "mutations" para alterar o estado de forma síncrona e 
+"actions" para alterar o estado de forma assíncrona.
+
+Em resumo, o "state" no Vuex refere-se ao estado centralizado da sua aplicação Vue.js, 
+que é armazenado em um "store" Vuex e pode ser acessado e modificado de qualquer componente na sua aplicação. 
+Isso ajuda a simplificar o gerenciamento de estado em aplicativos Vue.js, especialmente em aplicativos complexos com muitos componentes.
