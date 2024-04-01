@@ -12,7 +12,7 @@
         <p>Médico: {{ equipe.medico }}</p>
         <p>Carro: {{ equipe.carro }}</p>
         <p>Telefone: {{ equipe.telefone }}</p>
-        <p>Kit de reanimação: {{ equipe.reanimacao }}</p>
+        <p>Kit de reanimação: {{ equipe.kitDeReanimacao }}</p>
       </div>
       <div class="col-4 text-center">
         <div class="row">

@@ -1,0 +1,31 @@
+
+No Vuex, que é um gerenciador de estado para aplicativos Vue.js, 
+as "mutations" são funções responsáveis por modificar o estado do aplicativo de forma síncrona. 
+Elas são usadas para realizar alterações no estado centralizado da aplicação de acordo com as ações disparadas pelos componentes. 
+As mutations são invocadas pelos componentes Vue através de chamadas 
+específicas e são responsáveis por efetuar as mudanças desejadas no estado global.
+
+Uma característica importante das mutations é que elas devem ser síncronas 
+e devem ser usadas apenas para modificar o estado. Isso significa que não 
+devem conter lógica assíncrona, como chamadas de API. Para operações assíncronas, 
+o Vuex fornece as "actions".
+
+Aqui está um exemplo simples de uma mutation em um módulo Vuex:
+
+const meuModulo = {
+  state: {
+    contador: 0
+  },
+  mutations: {
+    incrementar(state) {
+      state.contador++
+    },
+    decrementar(state) {
+      state.contador--
+    }
+  }
+}
+
+Neste exemplo, temos um módulo Vuex com uma propriedade de estado contador 
+e duas mutações, incrementar e decrementar, que modificam o valor do contador. 
+Essas mutações podem ser invocadas de dentro dos componentes Vue para atualizar o estado do aplicativo.
