@@ -11,6 +11,7 @@ export default new Vuex.Store({
             telefone: '',
             kitDeReanimacao: ''
         },
+        equipes: [],
         enfermeiros: [],
         socorristas: [],
         medicos: [],
@@ -32,16 +33,16 @@ export default new Vuex.Store({
     },
     mutations: {
         setItemEquipe: (state, item) => {
-            
+
             let t = item.tipo
             let d = item.dados
 
-            if(t == 'enfermeiros') state.equipe.enfermeiro = d.nome
-            if(t == 'socorristas') state.equipe.socorrista = d.nome
-            if(t == 'medicos') state.equipe.medico = d.nome
-            if(t == 'carros') state.equipe.carro = d.placa
-            if(t == 'telefones') state.equipe.telefone = d.telefone
-            if(t == 'kits-de-reanimacao') state.equipe.kitDeReanimacao = d.kit
+            if (t == 'enfermeiros') state.equipe.enfermeiro = d.nome
+            if (t == 'socorristas') state.equipe.socorrista = d.nome
+            if (t == 'medicos') state.equipe.medico = d.nome
+            if (t == 'carros') state.equipe.carro = d.placa
+            if (t == 'telefones') state.equipe.telefone = d.telefone
+            if (t == 'kits-de-reanimacao') state.equipe.kitDeReanimacao = d.kit
         },
         setEnfermeiros: (state, payload) => {
             state.enfermeiros = payload
@@ -55,11 +56,45 @@ export default new Vuex.Store({
         setCarros: (state, payload) => {
             state.equipamentos.carros = payload
         },
-        setTelefones: (state, { telefones }) => {
+        setTelefones: (state, telefones) => {
             state.equipamentos.telefones = telefones
         },
         setkitsDeReanimacao: (state, payload) => {
             state.equipamentos.kitsDeReanimacao = payload
+        },
+        adicionarEquipeEmEquipes: (state, payload) => {
+            state.equipes.push(payload)
+            state.equipe = {}
+            console.log(state.equipes)
+        }
+    },
+    actions: {
+        fetchEquipamentos(context) {
+            fetch('http://localhost:3000/equipamentos')
+                .then(response => response.json())
+                .then(dados => {
+                    context.commit('setCarros', dados.carros)
+                    //processamento assícrono
+                    context.commit('setTelefones', dados.telefones)
+                    //processamento assíncrono
+                    //diversas regras de negócio
+                    context.commit('setkitsDeReanimacao', dados.kitsDeReanimacao)
+                })
+
+        },
+        fetchProfissionais(context) {
+            fetch('http://localhost:3000/enfermeiros')
+                .then(response => response.json())
+                .then(dados => context.commit('setEnfermeiros',dados))
+
+            fetch('http://localhost:3000/socorristas')
+                .then(response => response.json())
+                .then(dados => context.commit('setSocorristas', dados))
+
+            fetch('http://localhost:3000/medicos')
+                .then(response => response.json())
+                .then(dados => context.commit('setMedicos', dados))
+
         }
     }
 })

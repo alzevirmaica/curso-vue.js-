@@ -19,14 +19,20 @@
           <div class="col">
             <img
               class="img-fluid"
-              :src="require('@/assets/ambulancias/indefinida.png')"
+              :src="require(`@/assets/ambulancias/${imgAnbulancia}`)"
             />
           </div>
         </div>
         <div class="row mt-3">
           <div class="col">
-            <button type="button" class="btn btn-primary">Montar equipe</button>
-          </div>
+            <button 
+            type="button" 
+            class="btn btn-primary"
+            @click="montarEquipe"
+            >
+            Montar equipe
+          </button>
+        </div>
         </div>
       </div>
     </div>
@@ -46,11 +52,30 @@ export default {
     //mesclando atributo local e outro da state da vuex usa-se o opeardor spred
     ...mapState({
       equipe: (state) => state.equipe,
+      kitDeReanimacao: state => state.equipe.kitDeReanimacao,
+      carro: state => state.equipe.carro,
       //mesclando atributo local e outro da state da vuex
       tituloCustomizadoLocal(state) {
         return `${this.titulo} - ${state.equipe.carro}`;
       },
     }),
+    imgAnbulancia() {
+        if(this.kitDeReanimacao) {
+          return 'uti.png'
+        }
+
+        if(this.carro) {
+          return 'simples.png'
+        }
+        return 'indefinida.png'
+      }
   },
+  methods: {
+    montarEquipe() {
+      let equipe = Object.assign({}, this.$store.state.equipe)
+
+      this.$store.commit('adicionarEquipeEmEquipes', equipe)
+    }
+  }
 };
 </script>

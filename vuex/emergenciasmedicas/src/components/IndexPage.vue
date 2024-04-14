@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import ConfiguracaoEquipe from './ConfiguracaoEquipe.vue'
 import Equipamentos from './EquipamentosLista.vue'
 import Equipes from './EquipesLista.vue'
@@ -65,28 +65,17 @@ export default {
       'setCarros',
       'setTelefones',
       'setkitsDeReanimacao'
+    ]),
+    ...mapActions([
+      'fetchEquipamentos',
+      'fetchProfissionais'
     ])
   },
   created() {
-    fetch('http://localhost:3001/enfermeiros')
-    .then(response => response.json())
-    .then(dados => this.setEnfermeiros(dados))
-
-    fetch('http://localhost:3001/socorristas')
-    .then(response => response.json())
-    .then(dados => this.setSocorristas(dados))
-
-    fetch('http://localhost:3001/medicos')
-    .then(response => response.json())
-    .then(dados => this.setMedicos(dados))
-
-    fetch('http://localhost:3001/equipamentos')
-    .then(response => response.json())
-    .then(dados => {
-      this.setCarros(dados.carros)
-      this.setTelefones(dados)
-      this.setkitsDeReanimacao(dados.kitsDeReanimacao)
-    })
+    // this.$store.dispatch('fetchEquipamentos')
+    // this.$store.dispatch('fetchProfissionais')
+    this.fetchEquipamentos()
+    this.fetchProfissionais()
   }
 }
 </script>
